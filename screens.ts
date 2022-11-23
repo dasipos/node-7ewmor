@@ -14,7 +14,7 @@ export async function mainMenu(taskStorage: TaskStorage) {
 
   for (let task of taskStorage.getAllTasks()) {
     console.log(
-      task.complete ? '[X]' : '[_]' + task.name + ' (' + task.id + ')'
+      (task.complete ? '[X] ' : '[_] ') + task.name + ' (' + task.id + ')'
     );
   }
 
@@ -61,9 +61,9 @@ export async function taskDetailScreen(
   console.log('---');
 
   console.log(`H ... označiť za hotový
-  N ... označiť za nehotový
-  Z ... zmazať
-  S ... späť`);
+N ... označiť za nehotový
+Z ... zmazať
+S ... späť`);
 
   const input: string = await consolePrompt();
 
