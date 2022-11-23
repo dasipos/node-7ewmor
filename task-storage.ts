@@ -52,6 +52,8 @@ export class TaskStorage {
   }
 
   private generateId(): number {
-    return Math.max(...this.tasks.map((t) => t.id)) + 1;
+    return this.tasks.length === 0
+      ? 1
+      : Math.max(...this.tasks.map((t) => t.id)) + 1;
   }
 }

@@ -1,4 +1,4 @@
-# TypeScript pro Angular - Cvičení 2 - Vylepšení úkolníčku
+0# TypeScript pro Angular - Cvičení 2 - Vylepšení úkolníčku
 
 Naším cílem bude rozšířit úkolníček následujícím způsobem:
 

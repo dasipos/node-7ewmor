@@ -19,7 +19,7 @@ export async function mainMenu(taskStorage: TaskStorage) {
   }
 
   console.log(`0 ... Vytvor novú
-  x ... Detail úlohy s číslom x`);
+x ... Detail úlohy s číslom x`);
 
   const input: string = await consolePrompt();
   const selectedNumber = parseInt(input);
