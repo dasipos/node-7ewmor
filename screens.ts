@@ -31,7 +31,7 @@ x ... Detail úlohy s číslom x`);
       await taskDetailScreen(taskStorage, selectedNumber);
     }
   } else {
-    console.log('Neplatna volba, vypínam...');
+    console.log('Neplatná voľba, vypínam...');
   }
 }
 
