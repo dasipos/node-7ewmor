@@ -14,7 +14,7 @@ export async function mainMenu(taskStorage: TaskStorage) {
 
   for (let task of taskStorage.getAllTasks()) {
     console.log(
-      task.complete ? '[X]' : '[_]' + task.name + ' (' + task.id + '): '
+      task.complete ? '[X]' : '[_]' + task.name + ' (' + task.id + ')'
     );
   }
 
