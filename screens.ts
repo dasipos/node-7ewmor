@@ -32,7 +32,6 @@ x ... Detail úlohy s číslom x`);
     }
   } else {
     console.log('Neplatna volba');
-    await mainMenu(taskStorage);
   }
 }
 
