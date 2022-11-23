@@ -1,39 +1,52 @@
-0# TypeScript pro Angular - Cvičení 2 - Vylepšení úkolníčku
+# TypeScript pro Angular - Cvičení 1 - Textový úkolníček
 
-Naším cílem bude rozšířit úkolníček následujícím způsobem:
+Naším cílem bude naprogramovat si jednoduchý úkolníček s textovým rozhraním, kam půjde:
 
-- Úkolníčem by měl pracovat se dvěma druhy úkolů - úkoly s textovým obsahem a úkoly se vnořeným seznamem.
-- Úkoly by měly nově mít ternární stav - TODO -> Rozpracovaný -> Hotový.
-- Nadále by mělo jít úkoly vytvářet a mazat.
-
-V projektu je zapnut kompilační profil s Null Safety kontrolami.
+1. Přidávat úkoly s uživatelsky volitelným názvem,
+2. Označovat již přidané úkoly jako hotové,
+3. Mazat již přidané úkoly (bez ohledu na jejich stav).
 
 ## Dílčí práce k provedení
 
-### 0. Pokud pokračujete v práci nad vlastním kódem z úlohy 1
+### 0. Osahejte si prostředí a vyzkoušejte si spuštění prázdné aplikace.
 
-1. Zkopírujte si do projektu `tsconfig.json` z adresáře tohoto projektu, aby se zaply Null Safety kontroly. Pokud se objeví chyby spojené s Null Safety, patřičně je vyřešte.
-2. Odeberte všechny explicitní typy z kódu tak, aby byla na maximum využita typová inference (možná bude znovu potřeba vyřešit další Null Safety chyby).
+Tento projekt používá nástroj `npm`, což je balíčkový manažer pro správu knihoven, který navíc umí spouštět jednoduché skripty.
 
-### 1. Zaveďte entitě `Task` ternární stavovost `TODO`/`INPROGRESS`/`DONE`
+- V každém npm projektu se nachází soubor `package.json`, který specifikuje seznam knihoven a skriptů.
+  - Knihovny (neboli _závislosti projektu_) naleznete v atributech `dependencies` a `devDependencies`,
+  - Skripty naleznete v atributu `scripts`.
 
-- Pro implementaci stavovosti si můžete vybrat jak enumerát, tak string union.
-- Nově by místo položky `complete: boolean` měla mít entita `Task` položku `state`, která bude nést stavovou informaci o úkolu.
-- Upravte obrazovky úkolníčku tak, aby šlo mezi stavy přecházet dle průchodu `TODO` -> `INPROGRESS` -> `DONE`.
+Na začátku práce s každým npm projektem je nutno spustit ve složce s projektem příkaz `npm install`.
 
-_Tip: Začněte změnou `interface Task` - díky tomu Vám TypeScript bude postupně zvýrazňovat místa, kde musíte provést změny._
+Po dokončení `npm install` jsou nainstalovány potřebné závislosti a aplikaci lze posléze spustit příkazem `npm start` (spustí skript `start`).
 
-### 2. Zaveďte nové variace entity `Task` - `TaskWithText` a `TaskWithList`.
+Pokud je vše v pořádku, aplikace by měla vypsat `Hello TypeScript!`.
 
-- `TaskWithText` by měl mít povinnou položku `text`, která ponese vnitřní text úkolu.
-- `TaskWithList` by měl mít povinnou položku `list`, který bude typu `Array<string>`.
-- Zastřešte `TaskWithText` a `TaskWithList` pod společný union typ `Task`.
+### 1. Vymodelujte model pro data typu úkol. Každý úkol by měl mít nějaké ID (`id`), nějaký název (`name`) a měl by nést informaci, zda je hotový (`complete`).
 
-### 3. Upravte obrazovky úkolníčku pro podporu `TaskWithText` a `TaskWithList`.
+- Použijte konstrukt `interface`.
 
-- Mělo by dojít k úpravě detailu úkolu - pravděpodobně to bude také vyžadovat implementaci typových predikátů pro rozlišování mezi `TaskWithText` a `TaskWithList`.
-- Další dopad bude v obrazovce vytvoření úkolu a v metodě `createTask` třídy `TaskStorage`.
+### 2. Vytvořte třídu `TaskStorage`, která bude ukládat, získávat a mazat úkoly.
 
-### Inspirace k úpravě obrazovek:
+- Operace:
+  - získání všech úkolů,
+  - tvorba úkolu,
+  - získání úkolu dle ID,
+  - smazání úkolu dle ID,
+  - nastavení stavu úkolu dle ID.
 
-![Inspirace k úpravě obrazovek](task-manager-inspiration.png)
+### 3. Vytvořte za pomoci `console.log`ů a funkce `consolePrompt` jednoduché uživatelské rozhraní.
+
+- Pro implementace jedlitlivých obrazovek rozhraní použijte buď obyčejné funkce nebo konstrukt `class` se `static` metodami.
+- Obrazovky:
+  - Přehled úkolů v úkolníčku s možností přidání nového úkolu,
+  - Obrazovka přidání nového úkolu,
+  - Obrazovka detailu úkolu, která by měla umět úkol označit za hotový/rozpracovaný, nebo ho smazat.
+
+V souboru `util.ts` je pro Vaše pohodlí připravena pomocná funkce `consolePrompt`, která implementuje jednoduchý vstup z příkazové řádky.
+Funkce je asynchronní, to znamená, že je nutné ji používat společně s klíčovými slovy `await` a `async`.
+
+Obrazovku lze promazat voláním `console.clear()`.
+
+- Inspirace:
+  ![Inspirace k implementaci uživatelského rozhraní](task-manager-inspiration.png)
